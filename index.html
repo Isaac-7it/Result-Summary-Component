@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <title>Frontend Mentor | Results summary component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+    }
+
+    body {
+      font-family: "Hanken Grotesk", serif;
+      font-size: 1.6rem;
+    }
+
+    main {
+      /* height: 100vh; */
+      /* display: flex;
+      flex-direction: column */
+    }
+
+    span {
+      display: inline-block;
+    }
+
+    .result {
+      /* height: 45%; */
+      background-image: linear-gradient(to bottom, hsla(252, 100%, 67%), hsla(241, 81%, 54%));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: 3.2rem;
+      border-bottom-right-radius: 4rem;
+      border-bottom-left-radius: 4rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 0 4rem 1rem rgba(0, 0, 0, 0.3);
+      gap: 3rem;
+    }
+
+    .result__heading {
+      font-size: 1.8rem;
+      color: hsl(241, 100%, 89%);
+    }
+
+    .result__rating {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* height: 50%; */
+      padding: 8%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background-image: linear-gradient(hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0));
+    }
+
+    .result__main-rating {
+      font-size: 5.6rem;
+      font-weight: 700;
+    }
+
+    .result__overall {
+      color: hsl(241, 100%, 80%);
+    }
+
+    .result__comment {
+      text-align: center;
+      max-width: 70%;
+    }
+
+    .result__subheading,
+    .result__main-rating {
+      color: hsl(0, 0%, 100%);
+    }
+
+    .result__text,
+    .result__heading {
+      color: hsl(241, 100%, 89%);
+    }
+
+    .result__subheading {
+      font-size: 2.2rem;
+      font-weight: 500;
+    }
+
+    .result__text {
+      text-align: center;
+    }
+
+    .summary {
+      height: 65%;
+      padding-inline: 2.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding-bottom: 3.2rem;
+    }
+
+    .summary__heading {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: hsl(224, 30%, 27%);
+    }
+
+    .summary__rating-box {
+      display: flex;
+      /* height: 75%; */
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .summary__rating {
+      display: flex;
+      justify-content: space-between;
+      padding: 1.6rem .8rem;
+      border-radius: 1rem;
+      font-weight: 600;
+    }
+
+    .ovr {
+      color: hsl(0, 0%, 50%);
+    }
+
+    .summary__rating:nth-of-type(1) {
+      background-color: hsla(0, 100%, 67%, 0.1);
+    }
+
+    .summary__rating:nth-of-type(2) {
+      background-color: hsla(39, 100%, 56%, 0.1);
+    }
+
+    .summary__rating:nth-of-type(3) {
+      background-color: hsla(166, 100%, 37%, 0.1);
+    }
+
+    .summary__rating:nth-of-type(4) {
+      background-color: hsla(234, 85%, 45%, 0.1);
+    }
+
+    .summary__quality {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .summary__btn:is(:link, :visited) {
+      text-decoration: none;
+      color: hsl(0, 0%, 100%);
+      background-color: hsl(224, 30%, 27%);
+      text-align: center;
+      padding: 1.6rem;
+      border-radius: 3.2rem;
+      font-weight: 600;
+      transition: all .15s;
+    }
+
+    .summary__btn:hover {
+      background-color: hsla(256, 72%, 46%, 1);
+    }
+
+    /* FIX🛠 */
+    .summary__rating:nth-of-type(1) .props {
+      color: hsl(0, 100%, 67%);
+    }
+
+    .summary__rating:nth-of-type(2) .props {
+      color: hsl(39, 100%, 56%);
+    }
+
+    .summary__rating:nth-of-type(3) .props {
+      color: hsl(166, 100%, 37%);
+    }
+
+    .summary__rating:nth-of-type(4) .props {
+      color: hsl(234, 85%, 45%);
+    }
+
+    @media only screen and (min-width: 768px) {
+      html {
+        font-size: 100%;
+      }
+    }
+
+    @media only screen and (min-width: 1024px) {
+      html {
+        font-size: 80%;
+      }
+
+      body {
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        background-color: hsl(221, 100%, 96%);
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 45% 55%;
+        justify-content: center;
+        background-color: hsl(0, 0%, 100%);
+        border-radius: 3.5rem;
+      }
+
+      .result {
+        flex: 0 1 45%;
+        border-radius: 3.5rem;
+        margin-bottom: 0;
+        height: 100%;
+        gap: 0;
+        display: flex;
+      }
+
+      .result__rating {
+        display: inline-block;
+        text-align: center;
+      }
+
+      .result__main-rating {
+        display: block;
+      }
+
+      /* .result__heading,
+      .result__rating,
+      .result__subheading,
+      .result__text {
+        margin: 0 auto;
+      } */
+
+      .summary {
+        flex: 1;
+        padding-block: 3.5rem;
+        height: max-content;
+      }
+    }
+
+    /* @media only screen and (min-width: 1440px) {
+      html {
+        font-size: 100%;
+      } 
+    }*/
+
+    /* .props:nth-of-type(n) {} This can only be applicable if the elemets are of the same parent */
+  </style>
+</head>
+
+<body>
+  <!--Your Result
+  76
+  of 100
+
+  Great
+  You scored higher than 65% of the people who have taken these tests.
+  
+  Summary
+
+  Reaction
+  80 / 100
+
+  Memory
+  92 / 100
+
+  Verbal
+  61 / 100
+
+  Visual
+  72 / 100
+
+  Continue
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  -->
+  <main>
+    <div class="result">
+      <h5 class="result__heading">Your Result</h5>
+      <div class="result__rating">
+        <span class="result__main-rating"><!--Fetched by JS--></span>
+        <span class="result__overall">of 100</span>
+      </div>
+      <div class="result__comment">
+        <h5 class="result__subheading">Great</h5>
+        <p class="result__text">You scored higher than 65% of the people who have taken these test</p>
+      </div>
+
+
+    </div>
+    <div class="summary">
+      <h5 class="summary__heading">Summary</h5>
+      <div class="summary__rating-box">
+        <div class="summary__rating"><span class="summary__quality">
+            <img src="" alt="Reaction Icon">
+            <span class="props"><!--Fetched by JS--></span>
+          </span>
+          <span><span class="score"><!--Fetched by JS--></span> <span class="ovr">/ 100</span></span>
+        </div>
+        <div class="summary__rating"><span class="summary__quality"><img src="" alt="Memory Icon">
+            <span class="props"><!--Fetched by JS--></span></span><span><span class="score"><!--Fetched by JS--></span>
+            <span class="ovr">/ 100</span></span></div>
+        <div class="summary__rating"><span class="summary__quality">
+            <img src="assets/images/icon-verbal.svg" alt="Verbal Icon">
+            <span class="props"><!--Fetched by JS--></span></span><span><span class="score"></span><!--Fetched by JS-->
+            <span class="ovr">/ 100</span></span></div>
+        <div class="summary__rating"><span class="summary__quality">
+            <img src="assets/images/icon-visual.svg" alt="Visual Icon">
+            <span class="props"><!--Fetched by JS--></span> </span><span><span class="score"></span><!--Fetched by JS-->
+            <span class="ovr">/ 100</span></span></div>
+      </div>
+
+      <a href="#" class="summary__btn">Continue</a>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
